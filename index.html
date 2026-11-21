@@ -1,0 +1,2764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xer's store - Enterprise Software, Gaming & Digital Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =========================================
+       DESIGN SYSTEM & 3-THEME ENGINE
+       ========================================= */
+    :root {
+      /* Theme 1: Dark Obsidian Blue (Default) */
+      --bg-base: #060b14;
+      --bg-surface: #0a1120;
+      --bg-card: #0f1a30;
+      --bg-card-hover: #14223d;
+      --bg-input: #0b1426;
+      --bg-glass: rgba(15, 26, 48, 0.88);
+      --bg-glass-card: rgba(16, 28, 52, 0.75);
+      
+      --border-subtle: rgba(59, 130, 246, 0.12);
+      --border-default: rgba(59, 130, 246, 0.22);
+      --border-focus: #3b82f6;
+      --border-glow: rgba(59, 130, 246, 0.45);
+      
+      --blue-300: #93c5fd;
+      --blue-400: #60a5fa;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      
+      --red-500: #ef4444;
+      --red-600: #dc2626;
+      
+      --text-main: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --text-accent: #60a5fa;
+      
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --danger-border: rgba(239, 68, 68, 0.35);
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --success-border: rgba(16, 185, 129, 0.35);
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 22px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 16px 36px -6px rgba(0, 0, 0, 0.65);
+      --shadow-glow: 0 0 25px rgba(59, 130, 246, 0.25);
+      
+      --ambient-opacity: 1;
+      --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Theme 2: Gradient Dark Grey Theme */
+    [data-theme="dark-grey"] {
+      --bg-base: #0b0c10;
+      --bg-surface: #121318;
+      --bg-card: #181920;
+      --bg-card-hover: #21222b;
+      --bg-input: #121318;
+      --bg-glass: rgba(18, 19, 24, 0.92);
+      --bg-glass-card: rgba(24, 25, 32, 0.85);
+      
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-default: rgba(255, 255, 255, 0.14);
+      --border-focus: #94a3b8;
+      --border-glow: rgba(148, 163, 184, 0.3);
+      
+      --blue-400: #a1a1aa;
+      --blue-500: #71717a;
+      --blue-600: #52525b;
+      
+      --text-main: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --text-accent: #e4e4e7;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 8px 28px -4px rgba(0, 0, 0, 0.7);
+      --shadow-lg: 0 16px 40px -6px rgba(0, 0, 0, 0.85);
+      --shadow-glow: 0 0 25px rgba(255, 255, 255, 0.08);
+      
+      --ambient-opacity: 0.4;
+    }
+
+    /* Theme 3: Clean Modern Light Theme */
+    [data-theme="light"] {
+      --bg-base: #f4f6fa;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --bg-input: #f1f5f9;
+      --bg-glass: rgba(255, 255, 255, 0.92);
+      --bg-glass-card: rgba(255, 255, 255, 0.95);
+      
+      --border-subtle: rgba(203, 213, 225, 0.8);
+      --border-default: #cbd5e1;
+      --border-focus: #2563eb;
+      --border-glow: rgba(37, 99, 235, 0.3);
+      
+      --blue-300: #2563eb;
+      --blue-400: #2563eb;
+      --blue-500: #1d4ed8;
+      --blue-600: #1e40af;
+      
+      --text-main: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --text-accent: #2563eb;
+      
+      --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 32px -6px rgba(0, 0, 0, 0.12);
+      --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.15);
+      
+      --ambient-opacity: 0.15;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      line-height: 1.55;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Ambient background glowing orbs */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: var(--ambient-opacity);
+      transition: opacity 0.3s ease;
+    }
+
+    [data-theme="dark-grey"] body {
+      background: radial-gradient(circle at 50% 0%, #1f2129 0%, #0c0d12 100%) !important;
+      background-attachment: fixed;
+    }
+
+    [data-theme="dark-grey"] .ambient-glow-1 {
+      background: radial-gradient(circle, rgba(148, 163, 184, 0.12) 0%, rgba(100, 116, 139, 0.03) 50%, transparent 70%);
+    }
+
+    [data-theme="dark-grey"] .ambient-glow-2 {
+      background: radial-gradient(circle, rgba(71, 85, 105, 0.1) 0%, rgba(51, 65, 85, 0.03) 50%, transparent 70%);
+    }
+
+    [data-theme="dark-grey"] .ambient-grid {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    .ambient-glow-1 {
+      position: absolute;
+      top: -150px;
+      left: 20%;
+      width: 750px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, rgba(6, 182, 212, 0.04) 50%, transparent 70%);
+      filter: blur(80px);
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      top: 40%;
+      right: -100px;
+      width: 650px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(30, 58, 138, 0.12) 0%, rgba(99, 102, 241, 0.04) 50%, transparent 70%);
+      filter: blur(90px);
+    }
+
+    .ambient-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at 50% 20%, rgba(0, 0, 0, 0.8) 0%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 20%, rgba(0, 0, 0, 0.8) 0%, transparent 80%);
+    }
+
+    .app-wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Meta-style Red Xer Verified Badge */
+    .xer-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      cursor: help;
+      position: relative;
+      vertical-align: middle;
+      filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.65));
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .xer-badge:hover {
+      transform: scale(1.18);
+    }
+
+    .xer-badge svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .xer-badge-seal {
+      fill: #ef4444;
+    }
+
+    .xer-badge-check {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .xer-badge-lg {
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.75));
+    }
+
+    /* SVG Icon Helpers */
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-sm { width: 16px; height: 16px; }
+    .icon-lg { width: 26px; height: 26px; }
+    .icon-xl { width: 44px; height: 44px; }
+
+    /* Top Strip */
+    .top-strip {
+      background: rgba(10, 17, 32, 0.7);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 6px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    [data-theme="dark-grey"] .top-strip {
+      background: rgba(18, 19, 24, 0.85);
+    }
+
+    [data-theme="light"] .top-strip {
+      background: rgba(241, 245, 249, 0.85);
+    }
+
+    .top-strip-left, .top-strip-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-secondary);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue-400);
+      box-shadow: 0 0 8px var(--blue-400);
+      animation: pulseDot 2.5s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* Navbar */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .header-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #06b6d4 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    [data-theme="dark-grey"] .brand-mark {
+      background: linear-gradient(135deg, #27272a 0%, #3f3f46 50%, #71717a 100%);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+    }
+
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+      stroke: #ffffff;
+      fill: none;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+
+    .brand-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--blue-400);
+      font-weight: 700;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      font-size: 13.5px;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid transparent;
+      outline: none;
+      font-family: inherit;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-700) 100%);
+      color: #ffffff;
+      border-color: rgba(96, 165, 250, 0.3);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--blue-500) 0%, var(--blue-600) 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-default);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--blue-400);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12.5px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Profile Button & Dropdown */
+    .profile-container {
+      position: relative;
+    }
+
+    .profile-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      color: var(--text-main);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .profile-btn:hover {
+      border-color: var(--blue-400);
+      background: var(--bg-card-hover);
+    }
+
+    .user-avatar-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .profile-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 250px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      box-shadow: var(--shadow-lg);
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 200;
+    }
+
+    .profile-dropdown.show {
+      display: flex;
+    }
+
+    .profile-dropdown-header {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 4px;
+    }
+
+    .dropdown-username {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dropdown-role {
+      font-size: 11px;
+      color: var(--blue-400);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .dropdown-item:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--text-main);
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 24px 64px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Top Storefront Toolbar */
+    .store-toolbar-section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .store-search-bar {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-box-large {
+      width: 100%;
+      height: 48px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 0 46px 0 48px;
+      color: var(--text-main);
+      font-size: 14.5px;
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-box-large:focus {
+      border-color: var(--border-focus);
+      background: var(--bg-surface);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18), var(--shadow-md);
+    }
+
+    .search-box-large::placeholder {
+      color: var(--text-muted);
+    }
+
+    .store-search-bar .search-icon-left {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .store-search-bar .search-shortcut {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(30, 58, 138, 0.2);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--blue-400);
+      pointer-events: none;
+    }
+
+    .store-search-bar .search-clear-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: none;
+    }
+
+    /* Controls Bar: Dynamic Categories Tabs & Layout */
+    .controls-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .category-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .cat-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .cat-tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(59, 130, 246, 0.08);
+    }
+
+    .cat-tab-btn.active {
+      background: rgba(37, 99, 235, 0.18);
+      border-color: rgba(59, 130, 246, 0.35);
+      color: var(--blue-400);
+    }
+
+    .cat-tab-badge {
+      font-size: 11px;
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+      background: var(--bg-input);
+      color: inherit;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .summary-pill {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      padding: 5px 10px;
+      border-radius: var(--radius-full);
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+
+    .select-dropdown {
+      background: var(--bg-input);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 8px 12px;
+      font-size: 12.5px;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .view-toggle {
+      display: flex;
+      background: var(--bg-input);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 2px;
+    }
+
+    .view-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .view-btn.active {
+      background: rgba(59, 130, 246, 0.25);
+      color: var(--blue-400);
+    }
+
+    /* Software & Digital Assets Cards */
+    .catalog-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .catalog-container {
+      min-height: 320px;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 20px;
+    }
+
+    .catalog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .software-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .software-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--blue-400);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(30, 58, 138, 0.18);
+      border: 1px solid var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-400);
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-icon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-header-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .card-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-dev {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-tags {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tag-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .tag-format-chip {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--blue-400);
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .price-badge-free {
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success);
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .price-badge-paid {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #ef4444;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .tag-search-chip {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex-grow: 1;
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 12px;
+      margin-bottom: 14px;
+    }
+
+    .card-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mirrors-dropdown-container {
+      position: relative;
+    }
+
+    .mirrors-menu {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 0;
+      min-width: 210px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 6px;
+      box-shadow: var(--shadow-lg);
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 50;
+    }
+
+    .mirrors-menu.show {
+      display: flex;
+    }
+
+    .mirror-menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      font-size: 12.5px;
+      color: var(--text-main);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .mirror-menu-item:hover {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--blue-400);
+    }
+
+    /* List view item */
+    .software-card-list {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: var(--transition);
+    }
+
+    .software-card-list:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--blue-400);
+    }
+
+    /* Empty state */
+    .empty-state {
+      background: var(--bg-card);
+      border: 1px dashed var(--border-default);
+      border-radius: var(--radius-xl);
+      padding: 64px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .empty-state-icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      background: rgba(30, 58, 138, 0.18);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-400);
+      margin-bottom: 20px;
+    }
+
+    .empty-state-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .empty-state-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 440px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* FULL-PAGE DETAILS OVERLAY */
+    .full-page-view {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: var(--bg-base);
+      overflow-y: auto;
+      display: none;
+      flex-direction: column;
+    }
+
+    .full-page-view.active {
+      display: flex;
+    }
+
+    .full-page-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-default);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .full-page-content {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .full-page-hero {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      flex-wrap: wrap;
+    }
+
+    .full-hero-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: rgba(30, 58, 138, 0.25);
+      border: 1px solid var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-400);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .full-hero-info {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .full-hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .full-hero-dev {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .full-page-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .full-spec-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+    }
+
+    .full-spec-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .full-spec-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Screenshots Carousel on Full Page */
+    .screenshots-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .screenshots-gallery-slider {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .gallery-img-item {
+      height: 220px;
+      min-width: 340px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-default);
+      overflow: hidden;
+      scroll-snap-align: start;
+      background: var(--bg-card);
+      cursor: zoom-in;
+    }
+
+    .gallery-img-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-img-item:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Section Cards in Full View */
+    .full-section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .full-section-title {
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--blue-400);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(3, 7, 18, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-dialog {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 560px;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.96) translateY(10px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-overlay.active .modal-dialog {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      background: var(--bg-input);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      color: var(--text-main);
+      font-size: 13.5px;
+      font-family: inherit;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
+
+    /* Auth Tabs */
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: var(--bg-input);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+    }
+
+    .auth-tab-btn {
+      padding: 8px;
+      text-align: center;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .auth-tab-btn.active {
+      background: var(--bg-card);
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-lg);
+      min-width: 280px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.25s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-success { border-color: var(--success); }
+    .toast-info { border-color: var(--blue-400); }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .full-page-specs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .header-container { flex-direction: column; align-items: stretch; }
+      .controls-bar { flex-direction: column; align-items: stretch; }
+      .controls-right { justify-content: space-between; }
+      .full-page-specs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Light Effects -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-grid"></div>
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+  </div>
+
+  <div class="app-wrapper" id="mainAppWrapper">
+    <!-- Top System Strip -->
+    <aside class="top-strip" aria-label="System status">
+      <div class="top-strip-left">
+        <span class="status-badge">
+          <span class="status-dot"></span>
+          xer's store repository: synchronized
+        </span>
+        <span style="color: var(--border-default);">|</span>
+        <span>Windows x64 / Cross-Platform Verified</span>
+      </div>
+      <div class="top-strip-right">
+        <span>Protected Architecture</span>
+        <span style="color: var(--border-default);">|</span>
+        <span id="systemClock">Local Store</span>
+      </div>
+    </aside>
+
+    <!-- Navigation Header -->
+    <header class="header">
+      <div class="header-container">
+        <!-- Top Left: Logo & Name -->
+        <a href="#" class="logo-group" id="logoLink">
+          <div class="brand-mark">
+            <svg viewBox="0 0 24 24" stroke-width="2.2">
+              <path d="M4 4l16 16M20 4L4 20" />
+              <circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity="0.3" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">xer's store</span>
+            <span class="brand-tag">Verified Platform</span>
+          </div>
+        </a>
+
+        <!-- Top Right Actions: 3-Theme Switcher & Profile Option -->
+        <div class="header-actions">
+          <!-- 3-Way Theme Switcher (Dark Blue / Gradient Dark Grey / Clean Light) -->
+          <button class="btn btn-secondary btn-sm" id="btnThemeToggle" title="Switch Theme: Dark Blue / Dark Grey / Light">
+            <span class="icon icon-sm" id="themeIconContainer">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+            <span id="themeLabelText" style="font-size: 12px;">Blue</span>
+          </button>
+
+          <!-- Top Right: Profile Option -->
+          <div class="profile-container" id="profileArea">
+            <button class="profile-btn" id="btnProfileTrigger">
+              <span class="user-avatar-badge" id="userAvatarBadge">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              <span id="profileBtnText">Sign In / Register</span>
+              <span class="xer-badge" id="profileVerifiedBadge" style="display: none;" title="Xer Verified">
+                <svg viewBox="0 0 24 24">
+                  <path class="xer-badge-seal" d="M10.52 2.45a2 2 0 0 1 2.96 0l.96.99c.39.4.95.63 1.51.62l1.38-.03a2 2 0 0 1 2.03 2.03l-.03 1.38c-.01.56.22 1.12.62 1.51l.99.96a2 2 0 0 1 0 2.96l-.99.96c-.4.39-.63.95-.62 1.51l.03 1.38a2 2 0 0 1-2.03 2.03l-1.38-.03c-.56-.01-1.12.22-1.51.62l-.96.99a2 2 0 0 1-2.96 0l-.96-.99c-.39-.4-.95-.63-1.51-.62l-1.38.03a2 2 0 0 1-2.03-2.03l.03-1.38c.01-.56-.22-1.12-.62-1.51l-.99-.96a2 2 0 0 1 0-2.96l.99-.96c.4-.39.63-.95.62-1.51l-.03-1.38a2 2 0 0 1 2.03-2.03l1.38.03c.56.01 1.12-.22 1.51-.62l.96-.99z"></path>
+                  <path class="xer-badge-check" d="M8.5 12.3l2.4 2.4 4.8-5"></path>
+                </svg>
+              </span>
+            </button>
+
+            <!-- Profile Dropdown -->
+            <div class="profile-dropdown" id="profileDropdown">
+              <div class="profile-dropdown-header">
+                <div class="dropdown-username">
+                  <span id="dropdownUsername">User</span>
+                  <span class="xer-badge" id="dropdownBadgeIcon" style="display: none;" title="Xer Verified Creator">
+                    <svg viewBox="0 0 24 24">
+                      <path class="xer-badge-seal" d="M10.52 2.45a2 2 0 0 1 2.96 0l.96.99c.39.4.95.63 1.51.62l1.38-.03a2 2 0 0 1 2.03 2.03l-.03 1.38c-.01.56.22 1.12.62 1.51l.99.96a2 2 0 0 1 0 2.96l-.99.96c-.4.39-.63.95-.62 1.51l.03 1.38a2 2 0 0 1-2.03 2.03l-1.38-.03c-.56-.01-1.12.22-1.51.62l-.96.99a2 2 0 0 1-2.96 0l-.96-.99c-.39-.4-.95-.63-1.51-.62l-1.38.03a2 2 0 0 1-2.03-2.03l.03-1.38c.01-.56-.22-1.12-.62-1.51l-.99-.96a2 2 0 0 1 0-2.96l.99-.96c.4-.39.63-.95.62-1.51l-.03-1.38a2 2 0 0 1 2.03-2.03l1.38.03c.56.01 1.12-.22 1.51-.62l.96-.99z"></path>
+                      <path class="xer-badge-check" d="M8.5 12.3l2.4 2.4 4.8-5"></path>
+                    </svg>
+                  </span>
+                </div>
+                <div class="dropdown-role" id="dropdownRole">Member</div>
+              </div>
+
+              <!-- Apply for Xer Verified Option -->
+              <button class="dropdown-item" id="btnOpenVerifyApply">
+                <span class="xer-badge" style="width: 15px; height: 15px;">
+                  <svg viewBox="0 0 24 24">
+                    <path class="xer-badge-seal" d="M10.52 2.45a2 2 0 0 1 2.96 0l.96.99c.39.4.95.63 1.51.62l1.38-.03a2 2 0 0 1 2.03 2.03l-.03 1.38c-.01.56.22 1.12.62 1.51l.99.96a2 2 0 0 1 0 2.96l-.99.96c-.4.39-.63.95-.62 1.51l.03 1.38a2 2 0 0 1-2.03 2.03l-1.38-.03c-.56-.01-1.12.22-1.51.62l-.96.99a2 2 0 0 1-2.96 0l-.96-.99c-.39-.4-.95-.63-1.51-.62l-1.38.03a2 2 0 0 1-2.03-2.03l.03-1.38c.01-.56-.22-1.12-.62-1.51l-.99-.96a2 2 0 0 1 0-2.96l.99-.96c.4-.39.63-.95.62-1.51l-.03-1.38a2 2 0 0 1 2.03-2.03l1.38.03c.56.01 1.12-.22 1.51-.62l.96-.99z"></path>
+                    <path class="xer-badge-check" d="M8.5 12.3l2.4 2.4 4.8-5"></path>
+                  </svg>
+                </span>
+                <span id="verifyMenuText">Apply for xer verified</span>
+              </button>
+
+              <!-- xerconsole for verified creators -->
+              <button class="dropdown-item" id="btnOpenXerConsole" style="display: none;">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                <span style="font-weight: 700; color: #ef4444;">xerconsole (Publish)</span>
+              </button>
+
+              <button class="dropdown-item" id="btnUserLogout">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <span>Sign Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area: Search, Categories & Catalog directly at top -->
+    <main class="main-content">
+      <!-- TOP TOOLBAR: Search Bar + Categories Tabs + Sort + View Switchers -->
+      <section class="store-toolbar-section">
+        <!-- Prominent Live Search Input -->
+        <div class="store-search-bar">
+          <span class="search-icon-left icon icon-sm">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-box-large" 
+            placeholder="Search apps, games, source codes, courses, windows software, tags..." 
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <span class="search-shortcut" id="searchShortcut">Ctrl + K</span>
+          <button class="search-clear-btn" id="searchClearBtn" title="Clear search">
+            <span class="icon icon-sm">
+              <svg viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        <!-- Dynamic Category Tabs & Controls -->
+        <div class="controls-bar">
+          <div class="category-tabs" id="categoryTabsContainer">
+            <!-- Dynamically populated from StoreDB.getCategories() -->
+          </div>
+
+          <div class="controls-right">
+            <span class="summary-pill" id="catalogSummaryText">0 Items</span>
+
+            <!-- Sort dropdown -->
+            <select class="select-dropdown" id="sortSelect" title="Sort items">
+              <option value="newest">Sort: Date Added</option>
+              <option value="name-asc">Sort: Name (A-Z)</option>
+              <option value="name-desc">Sort: Name (Z-A)</option>
+              <option value="size">Sort: File Size</option>
+            </select>
+
+            <!-- Layout toggle -->
+            <div class="view-toggle">
+              <button class="view-btn active" id="viewGridBtn" title="Grid Layout">
+                <span class="icon icon-sm"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></span>
+              </button>
+              <button class="view-btn" id="viewListBtn" title="List Layout">
+                <span class="icon icon-sm"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Apps & Games Catalog Section -->
+      <section class="catalog-section">
+        <div class="catalog-container" id="catalogContainer">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-weight: 700; color: var(--text-main);">xer's store</span>
+          <span style="color: var(--border-default);">&bull;</span>
+          <span>Verified Repository</span>
+          <span style="color: var(--border-default);">&bull;</span>
+          <span>Dark Blue &bull; Dark Grey &bull; Light</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="color: var(--text-muted);">Verified Software Downloads</span>
+          <span style="color: var(--border-default);">&bull;</span>
+          <span style="color: var(--text-muted);">Status: Online</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- FULL PAGE DETAILS VIEW -->
+  <div class="full-page-view" id="fullPageView">
+    <div class="full-page-header">
+      <button class="btn btn-secondary btn-sm" id="btnBackToStore">
+        <span class="icon icon-sm"><path d="M19 12H5M12 19l-7-7 7-7"></path></span>
+        <span>Back to Catalog</span>
+      </button>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 13px; font-weight: 700; color: var(--text-main);" id="fullPageTopTitle">Product Details</span>
+      </div>
+    </div>
+
+    <div class="full-page-content" id="fullPageBody">
+      <!-- Injected dynamically by JS -->
+    </div>
+  </div>
+
+  <!-- APPLY FOR XER VERIFIED MODAL -->
+  <div class="modal-overlay" id="verifyApplyModal">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="verifyModalTitle">
+      <div class="modal-header">
+        <div class="modal-title" id="verifyModalTitle">
+          <span class="xer-badge xer-badge-lg">
+            <svg viewBox="0 0 24 24">
+              <path class="xer-badge-seal" d="M10.52 2.45a2 2 0 0 1 2.96 0l.96.99c.39.4.95.63 1.51.62l1.38-.03a2 2 0 0 1 2.03 2.03l-.03 1.38c-.01.56.22 1.12.62 1.51l.99.96a2 2 0 0 1 0 2.96l-.99.96c-.4.39-.63.95-.62 1.51l.03 1.38a2 2 0 0 1-2.03 2.03l-1.38-.03c-.56-.01-1.12.22-1.51.62l-.96.99a2 2 0 0 1-2.96 0l-.96-.99c-.39-.4-.95-.63-1.51-.62l-1.38.03a2 2 0 0 1-2.03-2.03l.03-1.38c.01-.56-.22-1.12-.62-1.51l-.99-.96a2 2 0 0 1 0-2.96l.99-.96c.4-.39.63-.95.62-1.51l-.03-1.38a2 2 0 0 1 2.03-2.03l1.38.03c.56.01 1.12-.22 1.51-.62l.96-.99z"></path>
+              <path class="xer-badge-check" d="M8.5 12.3l2.4 2.4 4.8-5"></path>
+            </svg>
+          </span>
+          <span>Apply for Xer Verified Badge</span>
+        </div>
+        <button class="modal-close-btn" id="closeVerifyModalBtn" aria-label="Close dialog">
+          <span class="icon icon-sm"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+          The <strong>Xer Verified Red Badge</strong> authenticates trusted creators and unlocks access to <strong>xerconsole</strong> to publish apps, games, source codes and courses.
+        </p>
+
+        <form id="verifyApplyForm">
+          <div class="form-group">
+            <label class="form-label" for="verifyDevName">Developer / Studio / Creator Name</label>
+            <input type="text" id="verifyDevName" class="form-input" placeholder="e.g. Apex Studios, John Developer" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="verifyPortfolio">Portfolio URL / GitHub / Website</label>
+            <input type="url" id="verifyPortfolio" class="form-input" placeholder="https://github.com/username">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="verifyReason">Why do you want Xer Verified?</label>
+            <textarea id="verifyReason" class="form-textarea" placeholder="Describe the software, games, source codes or courses you plan to publish..." required></textarea>
+          </div>
+
+          <div style="margin-top: 10px;">
+            <button type="submit" class="btn btn-primary" style="width: 100%; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border-color: #ef4444;">
+              <span class="xer-badge" style="width: 15px; height: 15px;">
+                <svg viewBox="0 0 24 24">
+                  <path class="xer-badge-seal" d="M10.52 2.45a2 2 0 0 1 2.96 0l.96.99c.39.4.95.63 1.51.62l1.38-.03a2 2 0 0 1 2.03 2.03l-.03 1.38c-.01.56.22 1.12.62 1.51l.99.96a2 2 0 0 1 0 2.96l-.99.96c-.4.39-.63.95-.62 1.51l.03 1.38a2 2 0 0 1-2.03 2.03l-1.38-.03c-.56-.01-1.12.22-1.51.62l-.96.99a2 2 0 0 1-2.96 0l-.96-.99c-.39-.4-.95-.63-1.51-.62l-1.38.03a2 2 0 0 1-2.03-2.03l.03-1.38c.01-.56-.22-1.12-.62-1.51l-.99-.96a2 2 0 0 1 0-2.96l.99-.96c.4-.39.63-.95.62-1.51l-.03-1.38a2 2 0 0 1 2.03-2.03l1.38.03c.56.01 1.12-.22 1.51-.62l.96-.99z"></path>
+                  <path class="xer-badge-check" d="M8.5 12.3l2.4 2.4 4.8-5"></path>
+                </svg>
+              </span>
+              <span>Submit to Waiting List</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- XERCONSOLE: DEVELOPER PUBLISHING MODAL -->
+  <div class="modal-overlay" id="xerConsoleModal">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="consoleModalTitle" style="max-width: 650px;">
+      <div class="modal-header">
+        <div class="modal-title" id="consoleModalTitle">
+          <span class="xer-badge xer-badge-lg">
+            <svg viewBox="0 0 24 24">
+              <path class="xer-badge-seal" d="M10.52 2.45a2 2 0 0 1 2.96 0l.96.99c.39.4.95.63 1.51.62l1.38-.03a2 2 0 0 1 2.03 2.03l-.03 1.38c-.01.56.22 1.12.62 1.51l.99.96a2 2 0 0 1 0 2.96l-.99.96c-.4.39-.63.95-.62 1.51l.03 1.38a2 2 0 0 1-2.03 2.03l-1.38-.03c-.56-.01-1.12.22-1.51.62l-.96.99a2 2 0 0 1-2.96 0l-.96-.99c-.39-.4-.95-.63-1.51-.62l-1.38.03a2 2 0 0 1-2.03-2.03l.03-1.38c.01-.56-.22-1.12-.62-1.51l-.99-.96a2 2 0 0 1 0-2.96l.99-.96c.4-.39.63-.95.62-1.51l-.03-1.38a2 2 0 0 1 2.03-2.03l1.38.03c.56.01 1.12-.22 1.51-.62l.96-.99z"></path>
+              <path class="xer-badge-check" d="M8.5 12.3l2.4 2.4 4.8-5"></path>
+            </svg>
+          </span>
+          <span>xerconsole - Creator Publishing Hub</span>
+        </div>
+        <button class="modal-close-btn" id="closeConsoleModalBtn" aria-label="Close dialog">
+          <span class="icon icon-sm"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="consolePublishForm">
+          <div class="form-group">
+            <label class="form-label" for="cTitle">Asset / App / Game / Course Title</label>
+            <input type="text" id="cTitle" class="form-input" placeholder="e.g. Next.js Boilerplate, Unreal Engine 5 Game..." required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="cCategory">Category</label>
+              <select id="cCategory" class="form-select" required></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cPricing">Pricing Model</label>
+              <select id="cPricing" class="form-select">
+                <option value="free">Free</option>
+                <option value="paid">Paid</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="cPrice">Price</label>
+              <input type="text" id="cPrice" class="form-input" placeholder="Free or ₹499">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cFormat">Format</label>
+              <select id="cFormat" class="form-select">
+                <option value="Direct Executable (.exe)">Direct Executable (.exe)</option>
+                <option value="Source Code Archive (.zip / .tar)">Source Code Archive (.zip / .tar)</option>
+                <option value="Video Course / Tutorials (.mp4 / Stream)">Video Course / Tutorials (.mp4 / Stream)</option>
+                <option value="Documentation / E-Book (.pdf)">Documentation / E-Book (.pdf)</option>
+                <option value="Raw Project Folder / Cloud Drive">Raw Project Folder / Cloud Drive</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cIconUrl">Thumbnail / Icon Image URL</label>
+            <input type="url" id="cIconUrl" class="form-input" placeholder="https://example.com/icon.png">
+          </div>
+
+          <!-- Screenshots -->
+          <div class="form-group">
+            <label class="form-label" for="cScreenshots">Screenshots (Image URLs comma separated, Optional)</label>
+            <input type="text" id="cScreenshots" class="form-input" placeholder="https://example.com/shot1.png, https://example.com/shot2.png">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cDownloadUrl">Download / Primary Resource Link</label>
+            <input type="url" id="cDownloadUrl" class="form-input" placeholder="https://download-link-or-drive..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cMirrors">Alternative Mirror Link (Google Drive / Mega, Optional)</label>
+            <input type="url" id="cMirrors" class="form-input" placeholder="https://mirror-link...">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="cVersion">Version / Release</label>
+              <input type="text" id="cVersion" class="form-input" placeholder="e.g. 1.0.0">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cSize">Payload Size</label>
+              <input type="text" id="cSize" class="form-input" placeholder="e.g. 180 MB, 12 Lessons">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cTags">Search Tags (comma separated)</label>
+            <input type="text" id="cTags" class="form-input" placeholder="e.g. source code, react, zip, course" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cDescription">Description</label>
+            <textarea id="cDescription" class="form-textarea" placeholder="Feature overview, requirements, curriculum..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 6px;">Publish to Store</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL (Login & Register for Users) -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+      <div class="modal-header">
+        <h2 class="modal-title" id="authModalTitle">xer's store Account</h2>
+        <button class="modal-close-btn" id="closeAuthModalBtn" aria-label="Close dialog">
+          <span class="icon icon-sm"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <button class="auth-tab-btn active" id="tabAuthLogin">Sign In</button>
+          <button class="auth-tab-btn" id="tabAuthRegister">Create Account</button>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="loginUser">Username</label>
+            <input type="text" id="loginUser" class="form-input" placeholder="Enter your username" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 18px;">
+            <label class="form-label" for="loginPass">Password</label>
+            <input type="password" id="loginPass" class="form-input" placeholder="Enter your password" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+        </form>
+
+        <form id="registerForm" style="display: none;">
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="regUser">Choose Username</label>
+            <input type="text" id="regUser" class="form-input" placeholder="At least 3 characters" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 18px;">
+            <label class="form-label" for="regPass">Choose Password</label>
+            <input type="password" id="regPass" class="form-input" placeholder="At least 4 characters" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Create My Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Database Engine Script -->
+  <script src="db.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Anti-Tampering Shield (Inspect & Storage Spoof Protection)
+      (function initTamperProtection() {
+        if (!StoreDB.verifySecurityIntegrity()) {
+          console.warn('Tamper alert: Unauthorized client storage modification detected.');
+        }
+
+        // Active DOM Guardian: Reverts inspect-element spoofing of verified badge & xerconsole
+        const observer = new MutationObserver(() => {
+          const isVerified = StoreDB.isVerifiedDeveloper();
+          const pBadge = document.getElementById('profileVerifiedBadge');
+          const dBadge = document.getElementById('dropdownBadgeIcon');
+          const cBtn = document.getElementById('btnOpenXerConsole');
+          if (!isVerified) {
+            if (pBadge && pBadge.style.display !== 'none') {
+              pBadge.style.display = 'none';
+              if (typeof showToast === 'function') {
+                showToast('Security Shield: Unauthorized inspect-element modification blocked.', 'info');
+              }
+            }
+            if (dBadge && dBadge.style.display !== 'none') {
+              dBadge.style.display = 'none';
+            }
+            if (cBtn && cBtn.style.display !== 'none') {
+              cBtn.style.display = 'none';
+              if (typeof showToast === 'function') {
+                showToast('Security Shield: Developer console access restricted to verified creators.', 'info');
+              }
+            }
+          }
+        });
+
+        // Initialize observer once DOM is ready
+        setTimeout(() => {
+          observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['style', 'class'] });
+        }, 500);
+
+        // Anti-tamper notice on inspect shortcuts
+        window.addEventListener('keydown', (e) => {
+          if ((e.key === 'F12') || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J'))) {
+            if (typeof showToast === 'function') {
+              showToast('xer Security Shield: Client anti-tamper protection active.', 'info');
+            }
+          }
+        });
+      })();
+
+      // State
+      let items = StoreDB.getItems();
+      let categories = StoreDB.getCategories();
+      let activeCategory = 'all';
+      let currentLayout = 'grid';
+      let currentSort = 'newest';
+      let searchQuery = '';
+
+      // DOM Elements
+      const catalogContainer = document.getElementById('catalogContainer');
+      const categoryTabsContainer = document.getElementById('categoryTabsContainer');
+      const searchInput = document.getElementById('searchInput');
+      const searchClearBtn = document.getElementById('searchClearBtn');
+      const sortSelect = document.getElementById('sortSelect');
+      const viewGridBtn = document.getElementById('viewGridBtn');
+      const viewListBtn = document.getElementById('viewListBtn');
+      const toastContainer = document.getElementById('toastContainer');
+      const btnThemeToggle = document.getElementById('btnThemeToggle');
+      const themeLabelText = document.getElementById('themeLabelText');
+      const catalogSummaryText = document.getElementById('catalogSummaryText');
+
+      // Profile Elements
+      const btnProfileTrigger = document.getElementById('btnProfileTrigger');
+      const profileBtnText = document.getElementById('profileBtnText');
+      const profileVerifiedBadge = document.getElementById('profileVerifiedBadge');
+      const profileDropdown = document.getElementById('profileDropdown');
+      const dropdownUsername = document.getElementById('dropdownUsername');
+      const dropdownBadgeIcon = document.getElementById('dropdownBadgeIcon');
+      const dropdownRole = document.getElementById('dropdownRole');
+      const btnOpenVerifyApply = document.getElementById('btnOpenVerifyApply');
+      const verifyMenuText = document.getElementById('verifyMenuText');
+      const btnOpenXerConsole = document.getElementById('btnOpenXerConsole');
+      const btnUserLogout = document.getElementById('btnUserLogout');
+
+      // Full Page View Elements
+      const fullPageView = document.getElementById('fullPageView');
+      const btnBackToStore = document.getElementById('btnBackToStore');
+      const fullPageBody = document.getElementById('fullPageBody');
+      const fullPageTopTitle = document.getElementById('fullPageTopTitle');
+
+      // Modals
+      const authModal = document.getElementById('authModal');
+      const closeAuthModalBtn = document.getElementById('closeAuthModalBtn');
+      const tabAuthLogin = document.getElementById('tabAuthLogin');
+      const tabAuthRegister = document.getElementById('tabAuthRegister');
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+
+      const verifyApplyModal = document.getElementById('verifyApplyModal');
+      const closeVerifyModalBtn = document.getElementById('closeVerifyModalBtn');
+      const verifyApplyForm = document.getElementById('verifyApplyForm');
+
+      const xerConsoleModal = document.getElementById('xerConsoleModal');
+      const closeConsoleModalBtn = document.getElementById('closeConsoleModalBtn');
+      const consolePublishForm = document.getElementById('consolePublishForm');
+      const cCategory = document.getElementById('cCategory');
+
+      // 3-Way Theme Cycle
+      function updateThemeLabel() {
+        const t = StoreDB.getTheme();
+        if (t === 'dark-blue') themeLabelText.textContent = 'Blue';
+        else if (t === 'dark-grey') themeLabelText.textContent = 'Dark Grey';
+        else themeLabelText.textContent = 'Light';
+      }
+      btnThemeToggle.addEventListener('click', () => {
+        const next = StoreDB.cycleTheme();
+        updateThemeLabel();
+        showToast(`Theme switched to ${next.replace('-', ' ')} mode`, 'info');
+      });
+      updateThemeLabel();
+
+      // Category Icon SVG generator
+      function getCategorySvg(category, customClass = '') {
+        const cat = (category || '').toLowerCase();
+        if (cat.includes('game')) {
+          return `<svg class="icon ${customClass}" viewBox="0 0 24 24"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line><rect x="2" y="6" width="20" height="12" rx="6"></rect></svg>`;
+        }
+        if (cat.includes('window') || cat.includes('system') || cat.includes('soft')) {
+          return `<svg class="icon ${customClass}" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><path d="M7 8h2m-2 4h6"></path></svg>`;
+        }
+        if (cat.includes('code') || cat.includes('source')) {
+          return `<svg class="icon ${customClass}" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`;
+        }
+        if (cat.includes('course') || cat.includes('video') || cat.includes('learn')) {
+          return `<svg class="icon ${customClass}" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+        }
+        // Default App Window
+        return `<svg class="icon ${customClass}" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>`;
+      }
+
+      function renderAppIcon(item, sizeClass = '') {
+        const categorySvg = getCategorySvg(item.category, sizeClass);
+        if (item.iconUrl && item.iconUrl.trim()) {
+          const safeUrl = escapeHtml(item.iconUrl.trim());
+          return `
+            <img 
+              src="${safeUrl}" 
+              alt="${escapeHtml(item.title)}" 
+              class="card-icon-img" 
+              onerror="this.onerror=null;this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend', '${categorySvg.replace(/"/g, '&quot;')}')" 
+            />
+          `;
+        }
+        return categorySvg;
+      }
+
+      // Red Meta-Style Verified Badge Markup
+      function getRedVerifiedBadge(title = 'xer Verified') {
+        return `
+          <span class="xer-badge" title="${escapeHtml(title)}">
+            <svg viewBox="0 0 24 24">
+              <path class="xer-badge-seal" d="M10.52 2.45a2 2 0 0 1 2.96 0l.96.99c.39.4.95.63 1.51.62l1.38-.03a2 2 0 0 1 2.03 2.03l-.03 1.38c-.01.56.22 1.12.62 1.51l.99.96a2 2 0 0 1 0 2.96l-.99.96c-.4.39-.63.95-.62 1.51l.03 1.38a2 2 0 0 1-2.03 2.03l-1.38-.03c-.56-.01-1.12.22-1.51.62l-.96.99a2 2 0 0 1-2.96 0l-.96-.99c-.39-.4-.95-.63-1.51-.62l-1.38.03a2 2 0 0 1-2.03-2.03l.03-1.38c.01-.56-.22-1.12-.62-1.51l-.99-.96a2 2 0 0 1 0-2.96l.99-.96c.4-.39.63-.95.62-1.51l-.03-1.38a2 2 0 0 1 2.03-2.03l1.38.03c.56.01 1.12-.22 1.51-.62l.96-.99z"></path>
+              <path class="xer-badge-check" d="M8.5 12.3l2.4 2.4 4.8-5"></path>
+            </svg>
+          </span>
+        `;
+      }
+
+      // Render Dynamic Category Tabs
+      function renderCategoryTabs() {
+        categories = StoreDB.getCategories();
+        const total = items.length;
+
+        let tabsHtml = `
+          <button class="cat-tab-btn ${activeCategory === 'all' ? 'active' : ''}" data-tab="all" id="tabAll">
+            <span class="icon icon-sm"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></span>
+            <span>All Items</span>
+            <span class="cat-tab-badge">${total}</span>
+          </button>
+        `;
+
+        categories.forEach(cat => {
+          const count = items.filter(i => (i.category || '').toLowerCase() === cat.toLowerCase()).length;
+          const svg = getCategorySvg(cat, 'icon-sm');
+          tabsHtml += `
+            <button class="cat-tab-btn ${activeCategory.toLowerCase() === cat.toLowerCase() ? 'active' : ''}" data-tab="${escapeHtml(cat)}">
+              ${svg}
+              <span>${escapeHtml(cat)}</span>
+              <span class="cat-tab-badge">${count}</span>
+            </button>
+          `;
+        });
+
+        categoryTabsContainer.innerHTML = tabsHtml;
+
+        // Attach Click Listeners
+        categoryTabsContainer.querySelectorAll('.cat-tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            activeCategory = btn.getAttribute('data-tab');
+            renderCategoryTabs();
+            renderCatalog();
+          });
+        });
+
+        if (catalogSummaryText) {
+          catalogSummaryText.textContent = `${total} ${total === 1 ? 'Item' : 'Items'}`;
+        }
+      }
+
+      // Profile & Auth Status
+      function updateAuthUI() {
+        const current = StoreDB.getCurrentUser();
+        if (current) {
+          profileBtnText.textContent = current.username;
+          dropdownUsername.textContent = current.username;
+          dropdownRole.textContent = current.isXerVerified ? (current.verifiedTitle || 'xer Verified Creator') : 'Verified Member';
+
+          if (current.isXerVerified) {
+            profileVerifiedBadge.style.display = 'inline-flex';
+            dropdownBadgeIcon.style.display = 'inline-flex';
+            btnOpenXerConsole.style.display = 'flex';
+            verifyMenuText.textContent = 'xer verified (Active)';
+          } else {
+            profileVerifiedBadge.style.display = 'none';
+            dropdownBadgeIcon.style.display = 'none';
+            btnOpenXerConsole.style.display = 'none';
+
+            // Check waiting list status
+            const vStatus = StoreDB.getUserVerificationStatus(current.id);
+            if (vStatus.status === 'pending') {
+              verifyMenuText.textContent = 'xer verified (Waiting List - Pending)';
+            } else {
+              verifyMenuText.textContent = 'Apply for xer verified';
+            }
+          }
+        } else {
+          profileBtnText.textContent = 'Sign In / Register';
+          profileVerifiedBadge.style.display = 'none';
+          dropdownBadgeIcon.style.display = 'none';
+          btnOpenXerConsole.style.display = 'none';
+          profileDropdown.classList.remove('show');
+        }
+      }
+
+      btnProfileTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const current = StoreDB.getCurrentUser();
+        if (current) {
+          profileDropdown.classList.toggle('show');
+        } else {
+          openAuthModal();
+        }
+      });
+
+      document.addEventListener('click', () => {
+        profileDropdown.classList.remove('show');
+        document.querySelectorAll('.mirrors-menu').forEach(m => m.classList.remove('show'));
+      });
+
+      btnUserLogout.addEventListener('click', () => {
+        StoreDB.logout();
+        updateAuthUI();
+        showToast('Signed out successfully', 'info');
+      });
+
+      // Apply for Xer Verified
+      btnOpenVerifyApply.addEventListener('click', () => {
+        profileDropdown.classList.remove('show');
+        const current = StoreDB.getCurrentUser();
+        if (!current) {
+          openAuthModal();
+          return;
+        }
+        if (current.isXerVerified) {
+          showToast('You are already an official xer verified creator!', 'success');
+          return;
+        }
+        const vStatus = StoreDB.getUserVerificationStatus(current.id);
+        if (vStatus.status === 'pending') {
+          showToast('Your application is already in the Waiting List awaiting admin review.', 'info');
+          return;
+        }
+        verifyApplyModal.classList.add('active');
+        document.getElementById('verifyDevName').value = current.username;
+      });
+
+      closeVerifyModalBtn.addEventListener('click', () => verifyApplyModal.classList.remove('active'));
+
+      verifyApplyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const current = StoreDB.getCurrentUser();
+        if (!current) return;
+
+        const devName = document.getElementById('verifyDevName').value;
+        const portfolio = document.getElementById('verifyPortfolio').value;
+        const reason = document.getElementById('verifyReason').value;
+
+        const res = StoreDB.applyForXerVerified({
+          userId: current.id,
+          username: current.username,
+          developerName: devName,
+          portfolioUrl: portfolio,
+          reason
+        });
+
+        if (res.success) {
+          verifyApplyModal.classList.remove('active');
+          verifyApplyForm.reset();
+          updateAuthUI();
+          showToast('Application submitted to Waiting List! Admin will review shortly.', 'success');
+        } else {
+          showToast(res.message, 'info');
+        }
+      });
+
+      // xerconsole: Creator Publishing Hub
+      btnOpenXerConsole.addEventListener('click', () => {
+        profileDropdown.classList.remove('show');
+        categories = StoreDB.getCategories();
+        cCategory.innerHTML = categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+        xerConsoleModal.classList.add('active');
+      });
+
+      closeConsoleModalBtn.addEventListener('click', () => xerConsoleModal.classList.remove('active'));
+
+      consolePublishForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const current = StoreDB.getCurrentUser();
+        const title = document.getElementById('cTitle').value;
+        const cat = document.getElementById('cCategory').value;
+        const pricing = document.getElementById('cPricing').value;
+        const price = document.getElementById('cPrice').value;
+        const format = document.getElementById('cFormat').value;
+        const iconUrl = document.getElementById('cIconUrl').value;
+        const screenshotsRaw = document.getElementById('cScreenshots').value;
+        const screenshots = screenshotsRaw ? screenshotsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+        const downloadUrl = document.getElementById('cDownloadUrl').value;
+        const mirrorUrl = document.getElementById('cMirrors').value;
+        const mirrors = mirrorUrl && mirrorUrl.trim() ? [{ name: 'Mirror 1 (Alternative)', url: mirrorUrl.trim() }] : [];
+        const version = document.getElementById('cVersion').value || '1.0.0';
+        const size = document.getElementById('cSize').value || 'Direct Link';
+        const tags = document.getElementById('cTags').value;
+        const description = document.getElementById('cDescription').value;
+
+        const res = StoreDB.addItem({
+          title,
+          category: cat,
+          pricingType: pricing,
+          price: pricing === 'paid' ? (price || '₹499') : 'Free',
+          assetFormat: format,
+          iconUrl,
+          screenshots,
+          downloadUrl,
+          mirrors,
+          version,
+          size,
+          tags,
+          description,
+          developer: current ? current.username : 'Creator',
+          isPublisherVerified: true
+        });
+
+        if (res.success) {
+          xerConsoleModal.classList.remove('active');
+          consolePublishForm.reset();
+          showToast(`"${title}" published to xer's store!`, 'success');
+          renderCategoryTabs();
+          renderCatalog();
+        } else {
+          showToast(res.message, 'info');
+        }
+      });
+
+      // Auth Modal Switcher
+      function openAuthModal() {
+        authModal.classList.add('active');
+        showAuthTab('login');
+      }
+
+      function closeAuthModal() {
+        authModal.classList.remove('active');
+      }
+
+      closeAuthModalBtn.addEventListener('click', closeAuthModal);
+      authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) closeAuthModal();
+      });
+
+      function showAuthTab(tab) {
+        if (tab === 'login') {
+          tabAuthLogin.classList.add('active');
+          tabAuthRegister.classList.remove('active');
+          loginForm.style.display = 'block';
+          registerForm.style.display = 'none';
+          document.getElementById('loginUser').focus();
+        } else {
+          tabAuthRegister.classList.add('active');
+          tabAuthLogin.classList.remove('active');
+          loginForm.style.display = 'none';
+          registerForm.style.display = 'block';
+          document.getElementById('regUser').focus();
+        }
+      }
+
+      tabAuthLogin.addEventListener('click', () => showAuthTab('login'));
+      tabAuthRegister.addEventListener('click', () => showAuthTab('register'));
+
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const u = document.getElementById('loginUser').value;
+        const p = document.getElementById('loginPass').value;
+        const res = StoreDB.login(u, p);
+        if (res.success) {
+          closeAuthModal();
+          updateAuthUI();
+          showToast(`Welcome back, ${res.user.username}!`, 'success');
+        } else {
+          showToast(res.message, 'info');
+        }
+      });
+
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const u = document.getElementById('regUser').value;
+        const p = document.getElementById('regPass').value;
+        const res = StoreDB.register(u, p);
+        if (res.success) {
+          closeAuthModal();
+          updateAuthUI();
+          showToast(`Account created! Welcome, ${res.user.username}!`, 'success');
+        } else {
+          showToast(res.message, 'info');
+        }
+      });
+
+      // Filter and Sort Items
+      function getFilteredItems() {
+        let result = [...items];
+
+        if (activeCategory !== 'all') {
+          result = result.filter(item => (item.category || '').toLowerCase() === activeCategory.toLowerCase());
+        }
+
+        if (searchQuery.trim() !== '') {
+          const q = searchQuery.toLowerCase().trim();
+          result = result.filter(item => {
+            const title = (item.title || '').toLowerCase();
+            const dev = (item.developer || '').toLowerCase();
+            const desc = (item.description || '').toLowerCase();
+            const category = (item.category || '').toLowerCase();
+            const format = (item.assetFormat || '').toLowerCase();
+            const tags = (item.tags || []).join(' ').toLowerCase();
+            return title.includes(q) || dev.includes(q) || desc.includes(q) || category.includes(q) || format.includes(q) || tags.includes(q);
+          });
+        }
+
+        result.sort((a, b) => {
+          if (currentSort === 'newest') return (b.createdAt || 0) - (a.createdAt || 0);
+          if (currentSort === 'name-asc') return (a.title || '').localeCompare(b.title || '');
+          if (currentSort === 'name-desc') return (b.title || '').localeCompare(a.title || '');
+          if (currentSort === 'size') return (b.size || '').localeCompare(a.size || '');
+          return 0;
+        });
+
+        return result;
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Render Catalog
+      function renderCatalog() {
+        items = StoreDB.getItems();
+        const filtered = getFilteredItems();
+
+        if (filtered.length === 0) {
+          renderEmptyState();
+          return;
+        }
+
+        if (currentLayout === 'grid') {
+          renderGridView(filtered);
+        } else {
+          renderListView(filtered);
+        }
+      }
+
+      function renderEmptyState() {
+        const isSearching = searchQuery.trim() !== '';
+        const isFiltered = activeCategory !== 'all';
+
+        let title = 'Repository Catalog Ready';
+        let desc = "The repository is active and awaiting published packages, source codes or courses. Check back soon for additions.";
+
+        if (isSearching) {
+          title = 'No Software Found';
+          desc = `No items matched your query "${escapeHtml(searchQuery)}". Try searching by name, developer, format or tag.`;
+        } else if (isFiltered) {
+          title = `No Items in ${escapeHtml(activeCategory)}`;
+          desc = `No packages indexed under ${escapeHtml(activeCategory)} at this moment.`;
+        }
+
+        catalogContainer.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">
+              <svg class="icon icon-xl" viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="M10 4v4"></path>
+                <path d="M2 8h20"></path>
+              </svg>
+            </div>
+            <h3 class="empty-state-title">${title}</h3>
+            <p class="empty-state-desc">${desc}</p>
+            ${isSearching ? `
+              <button class="btn btn-secondary" onclick="document.getElementById('searchClearBtn').click()">
+                <span>Reset Search Filter</span>
+              </button>
+            ` : ''}
+          </div>
+        `;
+      }
+
+      function renderGridView(itemsList) {
+        const cardsHtml = itemsList.map(item => {
+          const iconHtml = renderAppIcon(item);
+          const versionTag = item.version ? `v${escapeHtml(item.version)}` : 'v1.0';
+          const sizeText = item.size ? escapeHtml(item.size) : 'Direct Link';
+          const devText = item.developer ? escapeHtml(item.developer) : 'Independent';
+          const mirrors = item.mirrors || [];
+          const tags = item.tags || [];
+          const priceBadge = item.pricingType === 'paid' 
+            ? `<span class="price-badge-paid">${escapeHtml(item.price || '₹499')}</span>` 
+            : `<span class="price-badge-free">FREE</span>`;
+          const verifiedBadge = item.isPublisherVerified ? getRedVerifiedBadge('xer Verified Publisher') : '';
+
+          return `
+            <div class="software-card">
+              <div>
+                <div class="card-header">
+                  <div class="card-icon-box">${iconHtml}</div>
+                  <div class="card-header-info">
+                    <h3 class="card-title" title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</h3>
+                    <p class="card-dev">
+                      <span>${devText}</span>
+                      ${verifiedBadge}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card-tags">
+                  ${priceBadge}
+                  <span class="tag-format-chip">${escapeHtml(item.assetFormat || 'Executable')}</span>
+                  <span class="tag-badge" style="background: var(--bg-input); color: var(--text-secondary); border: 1px solid var(--border-subtle);">${versionTag}</span>
+                  ${tags.slice(0, 2).map(t => `<span class="tag-search-chip">#${escapeHtml(t)}</span>`).join('')}
+                </div>
+
+                <p class="card-desc">${escapeHtml(item.description)}</p>
+              </div>
+
+              <div>
+                <div class="card-meta-row">
+                  <div style="display: flex; align-items: center; gap: 5px;">
+                    <span class="icon icon-sm"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></span>
+                    <span>${sizeText}</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 5px; color: var(--blue-400);">
+                    <span class="icon icon-sm"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></span>
+                    <span>Verified</span>
+                  </div>
+                </div>
+
+                <div class="card-actions-row">
+                  <button class="btn btn-secondary btn-sm" onclick="openFullPageDetails('${item.id}')" style="flex: 1;">
+                    <span>Details</span>
+                  </button>
+
+                  <a href="${escapeHtml(item.downloadUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="flex: 1.2;">
+                    <span class="icon icon-sm"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></span>
+                    <span>${item.pricingType === 'paid' ? 'Purchase / Get' : 'Download'}</span>
+                  </a>
+
+                  ${mirrors.length > 0 ? `
+                    <div class="mirrors-dropdown-container">
+                      <button class="btn btn-secondary btn-sm" onclick="toggleMirrors(event, '${item.id}')" title="Mirror Links (${mirrors.length})">
+                        <span>+ Mirrors</span>
+                      </button>
+                      <div class="mirrors-menu" id="mirror_menu_${item.id}">
+                        <div style="font-size: 11px; color: var(--text-muted); padding: 4px 8px; font-weight: 700; text-transform: uppercase;">Download Mirrors</div>
+                        <a href="${escapeHtml(item.downloadUrl)}" target="_blank" class="mirror-menu-item">
+                          <span>Primary Server</span>
+                          <span style="font-size: 10px; color: var(--blue-400);">Direct</span>
+                        </a>
+                        ${mirrors.map(m => `
+                          <a href="${escapeHtml(m.url)}" target="_blank" class="mirror-menu-item">
+                            <span>${escapeHtml(m.label || 'Mirror Link')}</span>
+                            <span class="icon icon-sm" style="width: 12px; height: 12px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></span>
+                          </a>
+                        `).join('')}
+                      </div>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        catalogContainer.innerHTML = `<div class="catalog-grid">${cardsHtml}</div>`;
+      }
+
+      function renderListView(itemsList) {
+        const rowsHtml = itemsList.map(item => {
+          const iconHtml = renderAppIcon(item, 'icon-sm');
+          const versionTag = item.version ? `v${escapeHtml(item.version)}` : 'v1.0';
+          const sizeText = item.size ? escapeHtml(item.size) : 'Direct Link';
+          const devText = item.developer ? escapeHtml(item.developer) : 'Independent';
+          const verifiedBadge = item.isPublisherVerified ? getRedVerifiedBadge() : '';
+
+          return `
+            <div class="software-card-list">
+              <div style="display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0;">
+                <div class="card-icon-box" style="width: 38px; height: 38px;">${iconHtml}</div>
+                <div>
+                  <h3 class="card-title" style="font-size: 15px;">${escapeHtml(item.title)}</h3>
+                  <div style="display: flex; align-items: center; gap: 8px; margin-top: 3px;">
+                    <span class="tag-format-chip">${escapeHtml(item.assetFormat || 'Executable')}</span>
+                    <span style="font-size: 11px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px;">
+                      ${devText} ${verifiedBadge} &bull; ${versionTag} &bull; ${sizeText}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button class="btn btn-secondary btn-sm" onclick="openFullPageDetails('${item.id}')">
+                  <span>Details</span>
+                </button>
+                <a href="${escapeHtml(item.downloadUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <span class="icon icon-sm"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></span>
+                  <span>Get</span>
+                </a>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        catalogContainer.innerHTML = `<div class="catalog-list">${rowsHtml}</div>`;
+      }
+
+      // Mirror Dropdown Toggle
+      window.toggleMirrors = function(e, id) {
+        e.stopPropagation();
+        const menu = document.getElementById(`mirror_menu_${id}`);
+        const wasOpen = menu.classList.contains('show');
+        document.querySelectorAll('.mirrors-menu').forEach(m => m.classList.remove('show'));
+        if (!wasOpen) menu.classList.add('show');
+      };
+
+      // FULL PAGE DETAILS VIEW IMPLEMENTATION
+      window.openFullPageDetails = function(id) {
+        const item = StoreDB.getItem(id);
+        if (!item) return;
+
+        const iconHtml = renderAppIcon(item, 'icon-xl');
+        const tags = item.tags || [];
+        const mirrors = item.mirrors || [];
+        const screenshots = item.screenshots || [];
+        const verifiedBadge = item.isPublisherVerified ? getRedVerifiedBadge('xer Verified Publisher') : '';
+
+        fullPageTopTitle.textContent = item.title;
+
+        fullPageBody.innerHTML = `
+          <!-- Full Hero Header -->
+          <div class="full-page-hero">
+            <div class="full-hero-icon">${iconHtml}</div>
+            <div class="full-hero-info">
+              <h1 class="full-hero-title">${escapeHtml(item.title)}</h1>
+              <div class="full-hero-dev">
+                <span>By ${escapeHtml(item.developer || 'Independent Creator')}</span>
+                ${verifiedBadge}
+                <span style="color: var(--border-default);">&bull;</span>
+                <span style="color: var(--blue-400); font-weight: 600;">${escapeHtml(item.category)}</span>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <span class="${item.pricingType === 'paid' ? 'price-badge-paid' : 'price-badge-free'}" style="font-size: 13px; padding: 4px 10px;">
+                  ${escapeHtml(item.price || 'Free')}
+                </span>
+                <span class="tag-format-chip" style="font-size: 12px; padding: 4px 10px;">
+                  ${escapeHtml(item.assetFormat || 'Executable')}
+                </span>
+                <span class="summary-pill">v${escapeHtml(item.version || '1.0')}</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 200px;">
+              <a href="${escapeHtml(item.downloadUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 12px 20px; font-size: 15px;">
+                <span class="icon icon-sm"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></span>
+                <span>${item.pricingType === 'paid' ? 'Get Access' : 'Download Now'}</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Specs Matrix -->
+          <div class="full-page-specs-grid">
+            <div class="full-spec-card">
+              <div class="full-spec-label">Platform Architecture</div>
+              <div class="full-spec-value">${escapeHtml(item.architecture || 'Windows x64')}</div>
+            </div>
+            <div class="full-spec-card">
+              <div class="full-spec-label">Payload Size</div>
+              <div class="full-spec-value">${escapeHtml(item.size || 'Direct Link')}</div>
+            </div>
+            <div class="full-spec-card">
+              <div class="full-spec-label">Security Integrity</div>
+              <div class="full-spec-value" style="color: var(--blue-400);">SHA-256 Verified Safe</div>
+            </div>
+            <div class="full-spec-card">
+              <div class="full-spec-label">Indexed Date</div>
+              <div class="full-spec-value">${item.createdAt ? new Date(item.createdAt).toLocaleDateString() : 'Recent'}</div>
+            </div>
+          </div>
+
+          <!-- Screenshots Showcase Gallery (If present) -->
+          ${screenshots.length > 0 ? `
+            <div class="screenshots-showcase">
+              <div class="full-section-title">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Product Screenshots & Previews</span>
+              </div>
+              <div class="screenshots-gallery-slider">
+                ${screenshots.map((s, idx) => `
+                  <div class="gallery-img-item" onclick="window.open('${escapeHtml(s)}', '_blank')">
+                    <img src="${escapeHtml(s)}" alt="Screenshot ${idx + 1}" onerror="this.parentElement.style.display='none'">
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Description Section -->
+          <div class="full-section-card">
+            <div class="full-section-title">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Overview & Description</span>
+            </div>
+            <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; white-space: pre-line;">${escapeHtml(item.description)}</p>
+          </div>
+
+          <!-- Search Tags -->
+          ${tags.length > 0 ? `
+            <div class="full-section-card">
+              <div class="full-section-title">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                <span>Search Keywords & Tags</span>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                ${tags.map(t => `<span class="tag-search-chip" style="font-size: 12px; padding: 4px 10px;">#${escapeHtml(t)}</span>`).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Changelog -->
+          ${item.changelog ? `
+            <div class="full-section-card">
+              <div class="full-section-title">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <span>Changelog / Release Curriculum</span>
+              </div>
+              <div style="background: var(--bg-input); padding: 14px 16px; border-radius: 8px; font-size: 13.5px; white-space: pre-wrap; color: var(--text-secondary); line-height: 1.6;">${escapeHtml(item.changelog)}</div>
+            </div>
+          ` : ''}
+
+          <!-- More Details / System Requirements -->
+          ${item.moreDetails ? `
+            <div class="full-section-card">
+              <div class="full-section-title">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                <span>System Notes & Requirements</span>
+              </div>
+              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; white-space: pre-line;">${escapeHtml(item.moreDetails)}</p>
+            </div>
+          ` : ''}
+
+          <!-- Download Options & Mirrors -->
+          <div class="full-section-card">
+            <div class="full-section-title">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download & Mirror Locations</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px;">
+              <a href="${escapeHtml(item.downloadUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="justify-content: space-between; padding: 12px 18px;">
+                <span>Primary Location (Direct Link)</span>
+                <span class="icon icon-sm"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></span>
+              </a>
+
+              ${mirrors.map((m, idx) => `
+                <a href="${escapeHtml(m.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="justify-content: space-between; padding: 12px 18px;">
+                  <span>${escapeHtml(m.label || `Mirror ${idx + 1}`)}</span>
+                  <span class="icon icon-sm"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></span>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        fullPageView.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      btnBackToStore.addEventListener('click', () => {
+        fullPageView.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      // Search Handlers
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        searchClearBtn.style.display = searchQuery.trim().length > 0 ? 'block' : 'none';
+        renderCatalog();
+      });
+
+      searchClearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        searchClearBtn.style.display = 'none';
+        searchInput.focus();
+        renderCatalog();
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey && e.key.toLowerCase() === 'k') || (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+        if (e.key === 'Escape') {
+          if (fullPageView.classList.contains('active')) {
+            fullPageView.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+          authModal.classList.remove('active');
+          verifyApplyModal.classList.remove('active');
+          xerConsoleModal.classList.remove('active');
+        }
+      });
+
+      // Sort & View Layout Handlers
+      sortSelect.addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        renderCatalog();
+      });
+
+      viewGridBtn.addEventListener('click', () => {
+        currentLayout = 'grid';
+        viewGridBtn.classList.add('active');
+        viewListBtn.classList.remove('active');
+        renderCatalog();
+      });
+
+      viewListBtn.addEventListener('click', () => {
+        currentLayout = 'list';
+        viewListBtn.classList.add('active');
+        viewGridBtn.classList.remove('active');
+        renderCatalog();
+      });
+
+      // Toast Notification
+      function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        const iconSvg = type === 'success'
+          ? `<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+          : `<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
+
+        toast.innerHTML = `<div style="color: ${type === 'success' ? 'var(--success)' : 'var(--blue-400)'};">${iconSvg}</div><div style="font-size: 13px;">${escapeHtml(message)}</div>`;
+        toastContainer.appendChild(toast);
+
+        requestAnimationFrame(() => toast.classList.add('show'));
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => toast.remove(), 300);
+        }, 3200);
+      }
+
+      // Live DB synchronization
+      StoreDB.subscribe(() => {
+        renderCategoryTabs();
+        renderCatalog();
+        updateAuthUI();
+      });
+
+      // Initial Setup
+      updateAuthUI();
+      renderCategoryTabs();
+      renderCatalog();
+    })();
+  </script>
+</body>
+</html>
